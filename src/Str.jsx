@@ -4,9 +4,7 @@ const Str = (props) => {
 
     return (
         <div className = "element">
-            <div className="element__content">
-                <b>{props.element.id}. {props.element.name}</b>
-            </div>
+            <td>{props.element.id}</td>
         </div>
     );
 };

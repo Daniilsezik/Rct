@@ -1,43 +1,61 @@
 import React, { useState } from 'react';
 import Str from "./Str";
+import MyButton from "./MyButton";
+import MyInput from "./MyInput";
+import './styles/App.css';
+import MyTable from "./MyTable";
 
 function App() {
 
-    const [elements, setElemeents] = useState([
-        { id: 0, name: "123"},
-        { id: 1, name: "456"},
-        { id: 2, name: "789"},
-        { id: 3, name: "111"},
+    const [elements, setElements] = useState([
+        { id: 0, name: "123", dateCreation: new Date().toLocaleString('ru-RU', { timeZone: 'UTC' })},
+        { id: 1, name: "456", dateCreation: new Date().toLocaleString('ru-RU', { timeZone: 'UTC' })},
+        { id: 2, name: "789", dateCreation: new Date().toLocaleString('ru-RU', { timeZone: 'UTC' })},
+        { id: 3, name: "111", dateCreation: new Date().toLocaleString('ru-RU', { timeZone: 'UTC' })},
+
+        { id: 4, name: "123", dateCreation: new Date().toLocaleString('ru-RU', { timeZone: 'UTC' })},
+        { id: 5, name: "456", dateCreation: new Date().toLocaleString('ru-RU', { timeZone: 'UTC' })},
+        { id: 6, name: "789", dateCreation: new Date().toLocaleString('ru-RU', { timeZone: 'UTC' })},
+        { id: 7, name: "111", dateCreation: new Date().toLocaleString('ru-RU', { timeZone: 'UTC' })},
+
+        { id: 8, name: "123", dateCreation: new Date().toLocaleString('ru-RU', { timeZone: 'UTC' })},
+        { id: 9, name: "456", dateCreation: new Date().toLocaleString('ru-RU', { timeZone: 'UTC' })},
+        { id: 10, name: "789", dateCreation: new Date().toLocaleString('ru-RU', { timeZone: 'UTC' })},
+        { id: 11, name: "111", dateCreation: new Date().toLocaleString('ru-RU', { timeZone: 'UTC' })},
+
     ])
     const [name, setname] = useState("")
+
     const addElement = (e) => {
         e.preventDefault()
         const newElement = {
-            id: elements.length,
-            name
+            id: elements.at(-1).id + 1,
+            name,
+            dateCreation: new Date().toLocaleString('ru-RU', { timeZone: 'UTC' }),
         }
-        setElemeents([...elements, newElement])
-        console.log(newElement)
+        setElements([...elements, newElement])
+        setname("")
     }
-
+    const removeElement = (id) => {
+        setElements(elements.filter(p => p.id != id))
+    }
 
   return (
       <div className="App">
           <div>
-              <h1>Список</h1>
+              <form className="form">
+                  <MyInput
+                      placeholder= "Type element"
+                      value={name}
+                      onChange={e => setname(e.target.value)}/>
+                  <MyButton onClick = {addElement}>Add_Element</MyButton>
+              </form>
           </div>
-          <form>
-              <input
-                  value={name}
-                  onChange={e => setname(e.target.value)}
-                  type = "text"
-                  placeholder="Element "></input>
-              <button onClick={addElement}>Add_element</button>
-          </form>
-          {elements.map(element =>
-          <Str element={element} key = {element.id}/>
-          )}
+
+          <div>
+              <MyTable table={elements} remove={removeElement}/>
           </div>
+      </div>
   );
 }
 export default App;

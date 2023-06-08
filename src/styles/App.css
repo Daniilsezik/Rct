@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#root{
+}
+.App{
+    width: 100%;
+}
+.tablediv {
+    justify-content: center;
+    margin-top: 10px;
+}
+
+table {
+    display: block;
+    width: 1400px;
+    height: 870px;
+    overflow-y: scroll;
+    vertical-align: center;
+    border: 3px solid teal;
+    margin-left: 15%;
+}
+th {
+    font-weight: bold;
+    text-align: left;
+    border: none;
+    padding: 10px 10px;
+    background: #d8d8d8;
+    font-size: 14px;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+td {
+    text-align: left;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    padding: 10px 10px;
+    font-size: 14px;
+    vertical-align: center;
+}
+.form{
+    display: flex;
+    vertical-align: top;
+    justify-content: center;
+    margin-top: 15px;
+    scroll-margin: 800px;
+}
+
+
+
+

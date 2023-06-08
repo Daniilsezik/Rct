@@ -1,43 +1,44 @@
 import React, { useState } from 'react';
 import Str from "./Str";
+import MyButton from "./MyButton";
+import MyInput from "./MyInput";
+import './styles/App.css';
+import MyTable from "./MyTable";
 
 function App() {
 
     const [elements, setElemeents] = useState([
-        { id: 0, name: "123"},
-        { id: 1, name: "456"},
-        { id: 2, name: "789"},
-        { id: 3, name: "111"},
+        { id: 0, name: "123", dateCreation: new Date().toLocaleString('ru-RU', { timeZone: 'UTC' })},
+        { id: 1, name: "456", dateCreation: new Date().toLocaleString('ru-RU', { timeZone: 'UTC' })},
+        { id: 2, name: "789", dateCreation: new Date().toLocaleString('ru-RU', { timeZone: 'UTC' })},
+        { id: 3, name: "111", dateCreation: new Date().toLocaleString('ru-RU', { timeZone: 'UTC' })},
     ])
     const [name, setname] = useState("")
     const addElement = (e) => {
         e.preventDefault()
         const newElement = {
             id: elements.length,
-            name
+            name,
+            dateCreation: new Date().toLocaleString('ru-RU', { timeZone: 'UTC' }),
         }
         setElemeents([...elements, newElement])
-        console.log(newElement)
+        setname("")
     }
 
 
   return (
       <div className="App">
-          <div>
-              <h1>Список</h1>
-          </div>
-          <form>
-              <input
+          <form className="form">
+              <MyInput
                   value={name}
-                  onChange={e => setname(e.target.value)}
-                  type = "text"
-                  placeholder="Element "></input>
-              <button onClick={addElement}>Add_element</button>
+                  onChange={e => setname(e.target.value)}/>
+              <MyButton onClick={addElement}>Add_element</MyButton>
           </form>
-          {elements.map(element =>
-          <Str element={element} key = {element.id}/>
-          )}
+          <div className="table">
+              <MyTable table={elements} key = {elements.id}/>
           </div>
+
+      </div>
   );
 }
 export default App;
